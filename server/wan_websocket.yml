@@ -1,0 +1,16 @@
+# TODO : make modified of these config
+systems:
+    ros2: { type: ros2 }
+
+    dds:
+      type: fastdds
+      types-from: ros2
+      participant:
+        file_path: "wan_config.xml"
+        profile_name: is_profile_server
+
+routes:
+    dds_to_websocket: { from: dds, to: websocket }
+
+topics:
+    chatter: { type: "std_msgs/String", route: dds_to_websocket }
